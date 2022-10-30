@@ -17,6 +17,8 @@ public class TP2 {
             if(opArgs.isPresent()){
                 float result = traiterArguments(opArgs.get());
                 System.out.println(String.format("\nLa réponse à l'opération est : %.3f\n\n", result));
+            } else {
+                System.out.println("Impossible de lire l'opération entrée");
             }
 
             System.out.println("Voulez-vous faire une autre opération (y/N)? ");
@@ -33,7 +35,7 @@ public class TP2 {
         }
 
         try{
-            int i1 = Integer.parseInt(tmp[0]), i2 = Integer.parseInt(tmp[2]);
+            float i1 = Float.parseFloat(tmp[0]), i2 = Float.parseFloat(tmp[2]);
         }catch (NumberFormatException ex){
             return Optional.empty();
         }
@@ -43,42 +45,31 @@ public class TP2 {
 
     public static float traiterArguments(String[] args){
         float toReturn;
-        int i1 = Integer.parseInt(args[0]), i2 = Integer.parseInt(args[2]);
-        switch (args[1]){
-            case "+":
-                toReturn = addition(i1, i2);
-                break;
-            case "-":
-                toReturn = soustraction(i1, i2);
-                break;
-            case "x":
-            case "*":
-                toReturn = multiplication(i1, i2);
-                break;
-            case "/":
-            case "÷":
-                toReturn = division(i1, i2);
-                break;
-            default:
-                toReturn = 0;
-        }
+        float i1 = Float.parseFloat(args[0]), i2 = Float.parseFloat(args[2]);
+        toReturn = switch (args[1]) {
+            case "+" -> addition(i1, i2);
+            case "-" -> soustraction(i1, i2);
+            case "x", "*" -> multiplication(i1, i2);
+            case "/", "÷" -> division(i1, i2);
+            default -> 0;
+        };
         return toReturn;
     }
 
-    public static float addition(int i1, int i2){
+    public static float addition(float i1, float i2){
         return i1 + i2;
     }
 
-    public static float soustraction(int i1, int i2){
+    public static float soustraction(float i1, float i2){
         return i1 - i2;
     }
 
-    public static float multiplication(int i1, int i2){
+    public static float multiplication(float i1, float i2){
         return i1 * i2;
     }
 
-    public static float division(int i1, int i2){
-        return ((float)i1) / i2;
+    public static float division(float i1, float i2){
+        return i1 / i2;
     }
 
 }
