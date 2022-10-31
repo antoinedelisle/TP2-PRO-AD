@@ -46,12 +46,24 @@ public class TP2 {
     public static float traiterArguments(String[] args){
         float toReturn;
         float i1 = Float.parseFloat(args[0]), i2 = Float.parseFloat(args[2]);
-        toReturn = switch (args[1]) {
-            case "+" -> addition(i1, i2);
-            case "-" -> soustraction(i1, i2);
-            case "x", "*" -> multiplication(i1, i2);
-            case "/", "÷" -> division(i1, i2);
-            default -> 0;
+        switch (args[1]) {
+            case "+":
+            	toReturn = addition(i1, i2);
+            	break;
+            case "-":
+            	toReturn = soustraction(i1, i2);
+            	break;
+            case "x":
+            case "*":
+            	toReturn = multiplication(i1, i2);
+            	break;
+            case "/":
+            case "÷": 
+            	toReturn = division(i1, i2);
+            	break;
+            default:
+            	toReturn = 0;
+            	break;
         };
         return toReturn;
     }
